@@ -14,13 +14,10 @@
     // Disable prefer default export
     "import/prefer-default-export": "off",
     "@typescript-eslint/object-curly-spacing": "off",
+    "no-console": "warn",
     "react/jsx-filename-extension": [0],
     "import/extensions": "off",
-    "import/no-extraneous-dependencies": "off",
-    "no-console": "warn",
-    "prefer-const": "error",
-    "indent": ["warn", 2],
-    "semi": ["warn", "always"]
+    "import/no-extraneous-dependencies": "off"
   },
   "overrides": [
     {
