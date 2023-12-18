@@ -7,11 +7,8 @@
     "jest": true
   },
   "rules": {
-    // Make prettier code formatting suggestions more verbose.
     "prettier/prettier": ["warn"],
-    // Disable <Fragment> => <> replacement. Feel free to change
     "react/jsx-fragments": "off",
-    // Disable prefer default export
     "import/prefer-default-export": "off",
     "@typescript-eslint/object-curly-spacing": "off",
     "no-console": "warn",

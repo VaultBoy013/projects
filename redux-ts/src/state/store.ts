@@ -1,13 +1,14 @@
-import { combineReducers, createStore } from 'redux'
-import { devToolsEnhancer } from 'redux-devtools-extension'
+import { configureStore } from '@reduxjs/toolkit'
+import { ignoredActions, persistedReducer } from './persist'
+import { persistStore } from 'redux-persist'
 
-/* Create root reducer, containing all features of the application */
-const rootReducer = combineReducers({})
-
-export type RootState = ReturnType<typeof rootReducer>
-const store = createStore(
-  rootReducer,
-  /* preloadedState, */ devToolsEnhancer({})
-)
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: { ignoredActions },
+    }),
+})
 
 export default store
+export const persiStore = persistStore(store)
