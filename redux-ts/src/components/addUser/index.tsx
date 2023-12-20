@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import { Dispatch, Selector } from '../../state/hooks'
 import fetchUsers from '../../state/actions/fetchUsers'
-import { ButtonCart, InputCart, LabelCart, NameType } from './AddUserType'
+import { ButtonUser, InputUser, LabelUser, NameType } from './userTypes'
 import './css/style.scss'
+import { autoComp, changeVal } from '../../state/reducers/userSearcher'
 const names: NameType = (data, error, loading) => {
   const nameArr: string[] = []
   data.forEach(({ name }) => {
@@ -15,11 +16,10 @@ const names: NameType = (data, error, loading) => {
 const AddUser: React.FC = () => {
   const dispatch = Dispatch()
   const { data, error, loading } = Selector((state) => state.fetchReducer)
-  const [inputVal, setInputVal] = useState<string>('')
-  const [helpBox, setHelpBox] = useState<boolean>(false)
+  const { changeValue, autoComplete } = Selector((state) => state.searcherReducer)
   const inputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = target
-    setInputVal(value.replace(/[^a-zа-яё]/gi, ''))
+    dispatch(changeVal(value.replace(/[^a-zа-яё]/gi, '').toUpperCase()))//
   }
   useEffect(() => {
     dispatch(fetchUsers(10))
@@ -30,35 +30,36 @@ const AddUser: React.FC = () => {
       <div className="w-full max-w-xs m-auto">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 relative">
           <div className="mb-4">
-            <label className={LabelCart.CLASS} htmlFor={LabelCart.HTML_FOR}>
-              Username
+            <label className={LabelUser.CLASS} htmlFor={LabelUser.HTML_FOR}>
+              Search name
             </label>
             <input
-              className={InputCart.CLASS}
-              id={InputCart.ID}
-              type={InputCart.TYPE}
-              autoComplete={InputCart.AUTO_COMPLETE_OFF}
-              placeholder={InputCart.PLACEHOLDER}
-              value={inputVal}
+              className={InputUser.CLASS}
+              id={InputUser.ID}
+              type={InputUser.TYPE}
+              autoComplete={InputUser.AUTO_COMPLETE_OFF}
+              placeholder={InputUser.PLACEHOLDER}
+              value={changeValue}
               onChange={inputChange}
               onClick={() => {
-                setHelpBox(true)
+                dispatch(autoComp(true))
               }}
             />
           </div>
           <div className="flex items-center justify-between">
             <button
-              className={ButtonCart.CLASS}
-              type={ButtonCart.TYPE}
+              className={ButtonUser.CLASS}
+              type={ButtonUser.TYPE}
               onClick={() => {
-                setHelpBox(false)
+                dispatch(autoComp(false))
+                dispatch(changeVal(''))//
               }}
             >
-              ADD
+              ADD CART
             </button>
             <ul
-              className={`bg-white shadow-md rounded px-4 py-2 text-sm font-bold absolute auto-completes overflow-auto ${
-                helpBox ? 'block' : 'hidden'
+              className={` bg-white shadow-md rounded px-4 py-2 text-sm font-bold absolute  overflow-auto ${
+                autoComplete ? 'auto-completes' : 'auto-completes-off'
               }`}
             >
               {allNames?.map((name, i) => {
@@ -70,8 +71,8 @@ const AddUser: React.FC = () => {
                     }
                     key={name + `${i}li`}
                     onClick={() => {
-                      setInputVal(nameUp)
-                      setHelpBox(false)
+                      dispatch(changeVal(nameUp))//
+                      dispatch(autoComp(false))
                     }}
                   >
                     {nameUp}
@@ -87,6 +88,3 @@ const AddUser: React.FC = () => {
 }
 
 export default AddUser
-
-// top: 100px;
-// right: 34px;

@@ -6,20 +6,20 @@ export type NameType = (
   loading: boolean
 ) => string[] | undefined
 
-export enum InputCart {
+export enum InputUser {
   CLASS = 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline',
   TYPE = 'text',
   ID = 'username',
   AUTO_COMPLETE_OFF = 'off',
-  PLACEHOLDER = 'Username',
+  PLACEHOLDER = 'Search',
 }
 
-export enum LabelCart {
+export enum LabelUser {
   CLASS = 'block text-gray-700 text-sm font-bold mb-2',
   HTML_FOR = 'username',
 }
 
-export enum ButtonCart {
-  CLASS = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline',
+export enum ButtonUser {
+  CLASS = 'transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 bg-blue-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded',
   TYPE = 'button',
 }

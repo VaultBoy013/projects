@@ -1,0 +1,14 @@
+.auto-completes {
+  top: 100px;
+  right: 34px;
+  height: 100px;
+  opacity: inherit;
+  transition: all 1s;
+}
+.auto-completes-off {
+  top: 100px;
+  right: 34px;
+  height: 0px;
+  opacity: 0;
+  visibility:hidden
+}

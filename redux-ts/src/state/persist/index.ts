@@ -10,6 +10,7 @@ import {
 } from 'redux-persist'
 import { combineReducers } from '@reduxjs/toolkit'
 import fetchReducer from '../reducers/fetch'
+import searcherReducer from '../reducers/userSearcher'
 
 export const ignoredActions = [
   FLUSH,
@@ -25,5 +26,5 @@ const persistConfig = {
   storage,
   blacklist: ['fetchReducer'],
 }
-export const rootReducer = combineReducers({ fetchReducer })
+export const rootReducer = combineReducers({ fetchReducer, searcherReducer })
 export const persistedReducer = persistReducer(persistConfig, rootReducer)
