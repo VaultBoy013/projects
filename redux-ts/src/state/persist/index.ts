@@ -1,4 +1,4 @@
-import storage from 'redux-persist/lib/storage'
+import storage from 'redux-persist/lib/storage';
 import {
   FLUSH,
   PAUSE,
@@ -7,10 +7,11 @@ import {
   PURGE,
   REGISTER,
   REHYDRATE,
-} from 'redux-persist'
-import { combineReducers } from '@reduxjs/toolkit'
-import fetchReducer from '../reducers/fetch'
-import searcherReducer from '../reducers/userSearcher'
+} from 'redux-persist';
+import { combineReducers } from '@reduxjs/toolkit';
+import { reducers } from '../reducers';
+
+const { inputUserReducer, fetchReducer } = reducers;
 
 export const ignoredActions = [
   FLUSH,
@@ -19,12 +20,12 @@ export const ignoredActions = [
   PERSIST,
   PURGE,
   REGISTER,
-]
+];
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['fetchReducer'],
-}
-export const rootReducer = combineReducers({ fetchReducer, searcherReducer })
-export const persistedReducer = persistReducer(persistConfig, rootReducer)
+  blacklist: [],
+};
+export const rootReducer = combineReducers({ fetchReducer, inputUserReducer });
+export const persistedReducer = persistReducer(persistConfig, rootReducer);

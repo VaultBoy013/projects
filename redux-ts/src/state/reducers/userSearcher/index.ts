@@ -1,26 +1,26 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface SearcherSlice {
-  changeValue: string
-  autoComplete: boolean
+  userInputValue: string;
+  autoComplete: boolean;
 }
 
 const initialState: SearcherSlice = {
-  changeValue: '',
+  userInputValue: '',
   autoComplete: false,
-}
+};
 
 const searcherSlice = createSlice({
   name: 'searcher',
   initialState,
   reducers: {
     changeVal(state, { payload }: PayloadAction<string>) {
-      state.changeValue = payload
+      state.userInputValue = payload;
     },
     autoComp(state, { payload }: PayloadAction<boolean>) {
-      state.autoComplete = payload
+      state.autoComplete = payload;
     },
   },
-})
-export const { changeVal, autoComp } = searcherSlice.actions
-export default searcherSlice.reducer
+});
+export const inputUserActions = searcherSlice.actions;
+export const inputUserReducer = searcherSlice.reducer;

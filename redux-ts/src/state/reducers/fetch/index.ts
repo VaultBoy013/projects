@@ -1,16 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit'
-import fetchUsers, { DataFetch } from '../../actions/fetchUsers'
+import { createSlice } from '@reduxjs/toolkit';
+import fetchUsers, { DataFetch } from './asyncThunk';
 
 interface InitialState {
-  data: DataFetch[]
-  loading: boolean
-  error: string | undefined
+  data: DataFetch[];
+  loading: boolean;
+  error: string | undefined;
 }
 const initialState: InitialState = {
   data: [],
   loading: false,
   error: undefined,
-}
+};
 
 const fetchSlice = createSlice({
   name: 'user',
@@ -19,20 +19,19 @@ const fetchSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchUsers.pending, (state) => {
-        state.loading = true
-        state.data = []
-        state.error = undefined
+        state.loading = true;
+        state.data = [];
+        state.error = undefined;
       })
       .addCase(fetchUsers.fulfilled, (state, { payload }) => {
-        state.loading = false
-        state.data = payload
-        state.error = undefined
+        state.loading = false;
+        state.data = payload;
+        state.error = undefined;
       })
       .addCase(fetchUsers.rejected, (state, { error }) => {
-        state.loading = false
-        state.data = []
-        state.error = error.message
+        state.loading = false;
+        state.data = [];
+        state.error = error.message;
       }),
-})
-
-export default fetchSlice.reducer
+});
+export const fetchReducer = fetchSlice.reducer;
