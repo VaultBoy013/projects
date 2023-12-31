@@ -1,13 +1,20 @@
 import React from "react";
+import "./css/index.css";
 import { AddUser } from "../userForm/ui";
-import Alert from "../alerts/wrapper";
+import Alert from "../alerts/ui/warn";
+import AlertSuccess from "../alerts/ui/success";
+import AlertLoading from "../alerts/ui/loading";
 
 const App: React.FC = () => {
     return (
         <>
-            <Alert/>
-            <div className={"container mx-auto py-10 bg-gray-100 shadow-md"}>
-                <AddUser />
+            <div className={"container mx-auto bg-gray-100 shadow-md"}>
+                <Alert/>
+                <AlertSuccess/>
+                <AlertLoading/>
+                <div className={"flex main-container"}>
+                    <AddUser />
+                </div>
             </div>
         </>
     );

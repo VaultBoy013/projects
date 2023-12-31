@@ -2,7 +2,7 @@ import React, { FormEvent, ReactNode, FC } from "react";
 import { UserSearcherWrapper } from "../../types";
 import { actionsBind } from "../../../../state/hooks";
 import { includesName } from "../../tools/namesHandler";
-const { changeVal, alertForm } = actionsBind;
+const { changeVal, warnForm, successForm } = actionsBind;
 interface Children {
   children: ReactNode
 }
@@ -15,7 +15,11 @@ const UserForm: FC<Children> = ( {children} ) => {
         event.preventDefault();
         changeVal( "" );
         if ( !nameIn ) {
-            alertForm( true );
+            warnForm( true );
+            successForm( false );
+        } else {
+            warnForm( false );
+            successForm( true );
         }
 
     };

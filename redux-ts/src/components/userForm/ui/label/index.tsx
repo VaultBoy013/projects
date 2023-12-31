@@ -7,7 +7,7 @@ const UserLabel = () => {
     let textColor = "black";
 
     if ( labelNameToggle ) {
-        textColor = "text-teal-500";
+        textColor = "text-blue-500";
     } else {
         textColor = "text-black-500";
     }

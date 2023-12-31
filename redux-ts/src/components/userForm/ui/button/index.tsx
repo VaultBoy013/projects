@@ -2,7 +2,7 @@ import React from "react";
 import { ButtonUserType } from "../../types";
 import { actionsBind, Selector } from "../../../../state/hooks";
 import { includesName} from "../../tools/namesHandler";
-const { autoComp, changeVal, alertForm } = actionsBind;
+const { autoComp, changeVal, warnForm, successForm } = actionsBind;
 
 const BtnUser: React.FC = () => {
     const { loading, error } = Selector( ( state ) => state.fetchReducer );
@@ -24,8 +24,11 @@ const BtnUser: React.FC = () => {
                 if ( btnBlocking && nameIn ) {
                     autoComp( false );
                     changeVal( "" );
+                    warnForm( false );
+                    successForm( true );
                 } else if ( !nameIn ) {
-                    alertForm( true );
+                    warnForm( true );
+                    successForm( false );
                 }
             }}
         >

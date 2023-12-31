@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { Dispatch, Selector, actionsBind } from "../../../state/hooks";
 import fetchUsers from "../../../state/reducers/fetch/asyncThunk";
 import { AutoComplete, UserSearcherWrapper } from "../types";
-import "../css/style.scss";
+import "../css/style.css";
 import { namesHandler } from "../tools/namesHandler";
 import BtnUser from "./button";
 import InputUser from "./input";
 import UserLabel from "./label";
 import UserForm from "./form";
-const { changeVal, autoComp, alertForm } = actionsBind;
+const { changeVal, autoComp, warnForm, successForm } = actionsBind;
 const AddUser: React.FC = () => {
     const dispatch = Dispatch();
     const { autoComplete } = Selector( ( state ) => state.searcherReducer );
@@ -35,7 +35,8 @@ const AddUser: React.FC = () => {
                                     className={AutoComplete.LI}
                                     key={name + `${i}li`}
                                     onClick={() => {
-                                        alertForm( false );
+                                        warnForm( false );
+                                        successForm( false );
                                         changeVal( nameUp );
                                         autoComp( false );
                                     }}

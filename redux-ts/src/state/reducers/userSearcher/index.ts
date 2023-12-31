@@ -4,13 +4,15 @@ import type {PayloadAction} from "@reduxjs/toolkit";
 interface SearcherSlice {
   userInputValue: string;
   autoComplete: boolean;
-  alert: boolean
+  warn: boolean;
+  success: boolean
 }
 
 const initialState: SearcherSlice = {
     userInputValue: "",
     autoComplete: false,
-    alert: false
+    warn: false,
+    success: false
 };
 
 const name = "searcher";
@@ -25,10 +27,12 @@ const searcherSlice = createSlice( {
         autoComp( state, { payload }: PayloadAction<boolean> ) {
             state.autoComplete = payload;
         },
-        alertForm( state, { payload }: PayloadAction<boolean> ) {
-            state.alert = payload;
+        warnForm( state, { payload }: PayloadAction<boolean> ) {
+            state.warn = payload;
         },
-    },
-} );
+        successForm( state, { payload }: PayloadAction<boolean> ) {
+            state.success = payload;
+        }
+}} );
 export const searcherActions = searcherSlice.actions;
 export const searcherReducer = searcherSlice.reducer;
