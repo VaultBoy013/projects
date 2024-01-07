@@ -1,20 +1,20 @@
 import React from "react";
-import { LabelUserType } from "../../types";
+import { LabelUserType, TextColor } from "../../types/label";
 import {labelName} from "../../tools/namesHandler";
 
 const UserLabel = () => {
     const labelNameToggle = labelName();
-    let textColor = "black";
+    let textColor;
 
     if ( labelNameToggle ) {
-        textColor = "text-blue-500";
+        textColor = TextColor.BLUE;
     } else {
-        textColor = "text-black-500";
+        textColor = TextColor.BLACK;
     }
 
     return (
-        <label className={LabelUserType.CLASS + ` ${textColor}`} htmlFor={LabelUserType.HTML_FOR}>
-            {labelNameToggle ? `Add the name  ${labelNameToggle}?` : "Search name"}
+        <label className={LabelUserType.CLASS + textColor} htmlFor={LabelUserType.HTML_FOR}>
+            {labelNameToggle ? `Add the user  ${labelNameToggle}?` : LabelUserType.SEARCH_USER}
         </label>
     );
 };

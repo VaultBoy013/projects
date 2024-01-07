@@ -10,6 +10,7 @@ import {
 } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 import { reducers } from "../reducers";
+import { cartsReducer } from "../reducers/carts";
 
 const { searcherReducer, fetchReducer, namesReducer } = reducers;
 
@@ -31,5 +32,6 @@ export const rootReducer = combineReducers( {
     fetchReducer,
     searcherReducer,
     namesReducer,
+    cartsReducer
 } );
 export const persistedReducer = persistReducer( persistConfig, rootReducer );

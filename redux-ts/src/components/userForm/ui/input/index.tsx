@@ -1,6 +1,7 @@
 import React from "react";
 import { actionsBind , Selector } from "../../../../state/hooks";
-import { InputUserType } from "../../types";
+import { InputUserType } from "../../types/input";
+
 const { autoComp, changeVal, warnForm, successForm } = actionsBind;
 
 
@@ -9,7 +10,7 @@ const InputUser: React.FC = () => {
     const inputChange = ( { target }: React.ChangeEvent<HTMLInputElement> ) => {
         warnForm( false );
         const { value } = target;
-        changeVal( value.replace( /[^a-zа-яё]/gi, "" ).toUpperCase() ); //
+        changeVal( value.replace( /[^a-zA-Z0-9_]*$/, "" ).toUpperCase() ); //
     };
 
     return (

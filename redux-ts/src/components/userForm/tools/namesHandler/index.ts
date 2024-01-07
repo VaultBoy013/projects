@@ -4,8 +4,8 @@ import { Selector } from "../../../../state/hooks";
 const namesHandler: NameType = () => {
     const { data } = Selector( ( state ) => state.fetchReducer );
     const nameArr: string[] = [];
-    data.forEach( ( { name } ) => {
-        nameArr.push( name.firstname.toUpperCase() );
+    data.forEach( ( { username } ) => {
+        nameArr.push( username.toUpperCase() );
     } );
     if ( nameArr.length === data.length ) {
         return nameArr;

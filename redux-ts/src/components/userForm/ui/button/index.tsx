@@ -1,11 +1,14 @@
 import React from "react";
-import { ButtonUserType } from "../../types";
+import { ButtonUserType } from "../../types/button";
 import { actionsBind, Selector } from "../../../../state/hooks";
 import { includesName} from "../../tools/namesHandler";
+import pushCart from "../../tools/submit";
 const { autoComp, changeVal, warnForm, successForm } = actionsBind;
 
+
+
 const BtnUser: React.FC = () => {
-    const { loading, error } = Selector( ( state ) => state.fetchReducer );
+    const { loading, error, data } = Selector( ( state ) => state.fetchReducer );
     const { userInputValue } = Selector( ( state ) => state.searcherReducer );
     const btnBlocking: boolean = !loading && !error && userInputValue.length > 0;
     const nameIn = ( includesName() );
@@ -26,7 +29,8 @@ const BtnUser: React.FC = () => {
                     changeVal( "" );
                     warnForm( false );
                     successForm( true );
-                } else if ( !nameIn ) {
+                    pushCart( userInputValue, data );
+                } else if ( btnBlocking && !nameIn ) {
                     warnForm( true );
                     successForm( false );
                 }

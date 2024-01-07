@@ -1,7 +1,8 @@
 import React, { FormEvent, ReactNode, FC } from "react";
-import { UserSearcherWrapper } from "../../types";
-import { actionsBind } from "../../../../state/hooks";
+import { UserSearcherWrapper } from "../../types/form";
+import { actionsBind, Selector } from "../../../../state/hooks";
 import { includesName } from "../../tools/namesHandler";
+import pushCart from "../../tools/submit";
 const { changeVal, warnForm, successForm } = actionsBind;
 interface Children {
   children: ReactNode
@@ -10,6 +11,8 @@ interface Children {
 
 
 const UserForm: FC<Children> = ( {children} ) => {
+    const { data } = Selector( ( state ) => state.fetchReducer );
+    const { userInputValue } = Selector( ( state ) => state.searcherReducer );
     const nameIn = ( includesName() );
     const onSubmit = ( event:  FormEvent<HTMLFormElement> ) => {
         event.preventDefault();
@@ -18,6 +21,7 @@ const UserForm: FC<Children> = ( {children} ) => {
             warnForm( true );
             successForm( false );
         } else {
+            pushCart( userInputValue, data );
             warnForm( false );
             successForm( true );
         }

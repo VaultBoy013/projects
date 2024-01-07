@@ -1,21 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-export interface DataFetch {
-    address: {
-        geolocation: { lat: string; long: string };
-        city: string;
-        street: string;
-        number: number;
-        zipcode: string;
-    };
-    id: number;
-    email: string;
-    username: string;
-    password: string;
-    name: { firstname: string; lastname: string; };
-    phone: string;
-}
+import type {DataFetch} from "../type";
 
 enum TypePrefix {
   USER = "user/fetchUsers",

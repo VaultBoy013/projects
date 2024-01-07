@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import fetchUsers, {DataFetch} from "./asyncThunk";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import fetchUsers from "./asyncThunk";
+import type {DataFetch} from "./type";
 
 interface InitialState {
   data: DataFetch[];
@@ -32,6 +34,6 @@ const fetchSlice = createSlice( {
                 state.loading = false;
                 state.data = [];
                 state.error = error.message;
-            } ),
+            } )
 } );
 export const fetchReducer = fetchSlice.reducer;

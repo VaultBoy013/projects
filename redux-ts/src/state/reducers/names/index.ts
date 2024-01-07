@@ -20,6 +20,7 @@ const namesSlice = createSlice( {
                 state.names = [];
             }
         },
+
     },
 } );
 

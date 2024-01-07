@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Dispatch, Selector, actionsBind } from "../../../state/hooks";
 import fetchUsers from "../../../state/reducers/fetch/asyncThunk";
-import { AutoComplete, UserSearcherWrapper } from "../types";
+import { AutoComplete, UserSearcherWrapper } from "../types/form";
 import "../css/style.css";
 import { namesHandler } from "../tools/namesHandler";
 import BtnUser from "./button";

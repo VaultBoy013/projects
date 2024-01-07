@@ -1,10 +1,10 @@
 import React from "react";
 import { Selector } from "../../../../state/hooks";
 import "../../css/index.css";
+import { Warn } from "../../types/warn";
 const Alert: React.FC = () => {
-    const { success } = Selector( ( state ) => state.searcherReducer );
-    const { warn } = Selector( ( state ) => state.searcherReducer );
-    const { userInputValue } = Selector( ( state ) => state.searcherReducer );
+    const { success, warn, userInputValue } = Selector( ( state ) => state.searcherReducer );
+    const { error } = Selector( ( state ) => state.fetchReducer );
     const notFound = ( InpVal: string )=>{
         if ( InpVal.length > 20 ) {
             return `${InpVal.slice( 0, 20 )}...`;
@@ -14,12 +14,12 @@ const Alert: React.FC = () => {
     };
     const trigger = ( !success && warn );
     return (
-        <div className={trigger ? "alert-show" : "alert-hidden " + "p-top-10" } role="alert">
-            <div className="bg-red-500 text-white font-bold rounded-t px-4 py-1">
-              Name not found.
+        <div className={trigger || error ? Warn.SHOW : Warn.HIDDEN + Warn.TOP } role={Warn.ROLE}>
+            <div className={Warn.HEADER}>
+                {Warn.HEADER_TEXT}
             </div>
-            <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-2 text-red-700">
-                <p>{`${notFound(userInputValue)} not found, try entering a different name.`}</p>
+            <div className={Warn.BODY}>
+                <p>{`${notFound( userInputValue )} ${Warn.TEXT}`}</p>
             </div>
         </div>
     );
